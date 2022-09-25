@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
+import CustomError from '../misc/CustomError';
 
 /**
  * Middleware to handle invalid routes
@@ -7,7 +8,7 @@ import { NextFunction, Request, Response } from 'express';
  * @param {NextFunction} next
  */
 export const notFound = (req: Request, res: Response, next: NextFunction) => {
-  const error = new Error(`Not Found - ${req.originalUrl}`);
+  const error = new CustomError(`Not Found - ${req.originalUrl}`, 404);
   res.status(404);
   next(error);
 };

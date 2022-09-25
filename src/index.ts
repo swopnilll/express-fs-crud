@@ -17,6 +17,6 @@ app.use(router);
 app.use(notFound);
 app.use(errorHandler);
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 4004;
 
 app.listen(PORT, () => logger.info(`Server is running on port ${PORT}`));

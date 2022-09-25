@@ -25,7 +25,13 @@ export const getUser = async (id: number): Promise<Success<User>> => {
       };
 };
 
-export const createUser = (req: Request, res: Response) => {
+export const createUser = async (payload: User) => {
+    const response = await userModel.createUser(payload);
+
+    return {
+        data: response,
+        message: 'Users fetched successfully',
+      };
 
 };
 

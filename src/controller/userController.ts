@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from "express";
+import { User } from "../domain/User";
 import { errorHandler } from "../middlware/errorHandler";
 
 import * as userService from "../service/userService";
@@ -21,7 +22,14 @@ import * as userService from "../service/userService";
 
   };
 
-  export const createUser = (req: Request, res: Response) => {
+  export const createUser = (req: Request, res: Response, next: NextFunction) => {
+
+    const payload: User = req.body;
+
+    userService
+    .createUser(payload)
+    .then(data => res.json(data))
+    .catch(err => errorHandler(err, req, res, next))
 
   };
 
