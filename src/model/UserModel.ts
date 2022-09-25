@@ -1,6 +1,9 @@
+import fs from 'fs';
+
 import { User } from '../domain/User';
 
 import users from '../user.json';
+
 
 /**
  * Get all the users.
@@ -29,3 +32,12 @@ import users from '../user.json';
     });
   };
   
+  export const createUser = async(payload: User) => {
+      return new Promise((resolve, reject) => {
+        const updatedUsers = [...users, {...payload, id: users.length + 1}];
+
+        fs.writeFileSync("src/user.json", JSON.stringify(updatedUsers), "utf8");
+
+        resolve(updatedUsers);
+      });
+  }
